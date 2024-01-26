@@ -355,3 +355,64 @@ for i in 1...100{
     }
 }
     
+//DAY 7
+//FUNCTIONS
+
+func sbel(){
+    print("name is ")
+    print("suyash")
+}
+
+sbel()
+
+func tables(number:Int){
+    for i in 1...10{
+        print("\(i) * \(number) is \(i * number)")
+    }
+}
+
+tables(number: 2)
+
+
+func buyMobile(range: Int){
+    switch range{
+    case 0...20_000:
+            print("buy xiaomi ")
+    case 20_001...50_000:
+        print("buy samsung")
+    case 50_001...90_000:
+        print("Buy iPhone")
+    default:
+        print("not worth buying phone of that price")
+    }
+}
+
+buyMobile(range: 80000)
+buyMobile(range: 95_000)
+
+
+func isSame(first: String , second: String)->Bool{
+    let sort1 = first.sorted()
+    let sort2 = second.sorted()
+    
+    if sort1 == sort2{
+        return true
+    }else{
+        return false
+    }
+}
+
+print(isSame(first: "suyash", second: "atharva"))
+
+//OR
+//when a function which will return value has ONLY ONE LINE OF CODE we can skip writing `return` keyword
+func isSame1(first: String,second:String)->Bool{
+     first.sorted() == second.sorted()
+}
+
+print(isSame1(first: "suyash", second: "suyash"))
+
+func pytha(side1:Double,side2:Double)->Double{
+     sqrt((side1 * side1) + (side2 * side2))
+}
+print(pytha(side1: 3, side2: 4))
