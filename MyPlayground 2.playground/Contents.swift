@@ -416,3 +416,82 @@ func pytha(side1:Double,side2:Double)->Double{
      sqrt((side1 * side1) + (side2 * side2))
 }
 print(pytha(side1: 3, side2: 4))
+
+
+//`for` acts as a parameter tor accept value and `number` is used as an internal parameter inside of the function
+
+//DAY 8 Default vaalue for functions and handling errors in func
+
+// `= 12` acts as a default value for the parameter `end` if no value is provided while calling the function 12 will be the value of `end`
+func timesTables(for number: Int,end:Int = 12){
+    for i in 1...end{
+        print("\(number) times \(i) is \(number * i)")
+    }
+}
+
+timesTables(for: 2, end: 10)
+timesTables(for: 2)
+
+//Throwing Errors
+enum PasswordError:Error{
+    case short,easy
+}
+func checkPass(password:String)throws -> String{
+    if password.count<5{
+        throw PasswordError.short
+    }
+    if password == "qwert"{
+        throw PasswordError.easy
+    }
+    if password.count>8{
+        return "ok"
+    }
+    else if password.count>10{
+        return "noicee"
+    }
+    else{
+        return "excellent"
+    }
+}
+
+let St = "sbel"
+
+do{
+    let result = try checkPass(password: St)
+    print("Password security:\(result)")
+}catch PasswordError.easy{
+    print("there was an error")
+}catch PasswordError.short{
+    print("your password is short")
+}catch{
+    print("Pokemon catch block")
+}
+
+
+//CHECKPOINT 4
+
+enum sqrtErrors:Error{
+    case outOfBound , noRoot
+}
+func squareRoot(of nom : Int)throws ->String{
+    guard nom > 1 && nom < 10000 else{
+        throw sqrtErrors.outOfBound
+    }
+    for i in 1...100{
+        if nom == i * i{
+            return "\(i)"
+        }
+    }
+    throw sqrtErrors.noRoot
+}
+
+do{
+    var result1 = try squareRoot(of: 7)
+    print("The root is \(result1)")
+}catch sqrtErrors.outOfBound{
+    print("ERROR: Enter number in range 1-10000")
+}catch sqrtErrors.noRoot{
+    print("no root found")
+}catch{
+    print("help")
+}
