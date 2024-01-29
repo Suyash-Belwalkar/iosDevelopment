@@ -495,3 +495,100 @@ do{
 }catch{
     print("help")
 }
+
+
+//DAY 9 CLOUSRES
+
+//clousres are like functions written without using func keyword assigned directly to a var or let
+
+let greetUser={
+    print("hi there")
+}
+//passing values to a clousre and defining return type
+
+let greet={(name : String ) -> String in
+            "hi there \(name)"
+}
+print(greet("suyash"))
+
+//COPYING a func into  another var or let
+func greetUser1(){
+    print("hello")
+}
+greetUser1()
+
+var greetCopy = greetUser1
+greetCopy()
+
+//Passing func inside a func
+
+let team69 = ["suyash","atharva","shinde","rajat"]
+let sortedTeam69 = team69.sorted()
+print(sortedTeam69)
+
+func sortedCaptain(name12: String, name22:String)->Bool{
+    if name12 == "shinde"{
+        return true
+    }else if name22 == "shinde"{
+        return false
+    }
+    return name12 < name22
+}
+
+//let captainSorted = team69.sorted(by: sortedCaptain)
+//print(captainSorted)
+
+//the same code can be written using closure
+
+let captainSortC = team69.sorted(by: {(name34:String,name35:String) -> Bool in
+    if name34 == "shinde"{
+        return true
+    }else if name35 == "shinde"{
+        return false
+    }
+    return name34 < name35
+}
+)
+print(captainSortC)
+
+
+//CheckPoint 5
+//Accept an array of integers then filter out the elements who are multiple of 2 then sort the filtered array and map it print out string with the element and msg `is a lucky number`
+
+let luckyNumbers = [7,4,38,21,16,15,12,33,31,49]
+let numberThree = [20,30,40,90,88,57,69,13,5]
+
+//let filter = luckyNumbers.filter{%2 == 0 ? print(filter) : print("false")}
+
+let _ = luckyNumbers
+    .filter{ !$0.isMultiple(of: 2)}
+    .sorted()
+    .map{ print("\($0) is a lucky number")}
+
+func solve(evolve:[Int]){
+    let _ = evolve
+        .filter{ !$0.isMultiple(of: 2)}
+        .sorted()
+        .map{ print("\($0) is a lucky number")}
+}
+
+solve(evolve: numberThree)
+
+//func trying(first:([Int])->[Int] , second:([Int])->[Int] , third:([Int])->[String]){
+//    print("Implementing filter")
+//    first(luckyNumbers)
+//    print("implementing sort")
+//    second(luckyNumbers)
+//    print("implementing mapping")
+//    third(luckyNumbers)
+//    print("Done!!")
+//}
+//
+//trying {
+//    luckyNumbers in
+//        .filter{ !$0.isMultiple(of: 2)}
+//}second: { luckyNumbers in
+//        .sorted()
+//}third: { luckyNumbers in
+//    print("\(luckyNumbers) is a lucky number")
+//}
