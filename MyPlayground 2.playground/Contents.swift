@@ -657,3 +657,20 @@ Achal.vaccationUsed = 10
 print(Achal.vaccationReamain)
 Achal.vaccationReamain = 15
 print(Achal)
+
+
+//Initializers
+
+struct player70{
+    let name:String
+    let number:Int
+    
+    init(name: String) {
+        self.name = name
+        self.number = Int.random(in: 1...10)
+    }
+}
+
+var Player = player70(name: "Ronaldo")
+print(Player.number)
+print(Player.self)
