@@ -592,3 +592,68 @@ solve(evolve: numberThree)
 //}third: { luckyNumbers in
 //    print("\(luckyNumbers) is a lucky number")
 //}
+
+
+//DAY 10
+//Structures
+
+struct Album{
+    let title:String
+    let artist:String
+    let year:Int
+    
+    func printSummary()
+    {
+        print("\(title) is an song of \(artist) from year \(year)")
+    }
+}
+
+let Kamikaze = Album(title:"kamikaze",artist:"Eminem",year:2015)
+
+print(Kamikaze.artist)
+
+Kamikaze.printSummary()
+
+
+//Changing values of a struct by calling functions
+
+struct Employee{
+    let name:String
+    var remainingVacation:Int
+    
+    mutating func takevacation(days:Int){
+        if remainingVacation >= days{
+            remainingVacation -= days
+            print("i'm going on a vaccation")
+            print("Your remaining vacation has \(remainingVacation) days left")
+        }else{
+            print("OOPSSS!!!! not enough days remaining")
+        }
+    }
+}
+
+var Tanmay = Employee(name: "Tanmay", remainingVacation: 15)
+Tanmay.takevacation(days: 7)
+
+//Dynamically change values using get and set
+struct Emp{
+    let name:String
+    var vaccation = 15
+    var vaccationUsed = 0
+    
+    var vaccationReamain : Int{
+        get{
+            vaccation - vaccationUsed
+        }
+        set{
+            vaccation = vaccationUsed + newValue
+        }
+    }
+}
+
+var Achal = Emp(name:"achal",vaccation: 20)
+print(Achal)
+Achal.vaccationUsed = 10
+print(Achal.vaccationReamain)
+Achal.vaccationReamain = 15
+print(Achal)
