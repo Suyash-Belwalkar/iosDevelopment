@@ -674,3 +674,34 @@ struct player70{
 var Player = player70(name: "Ronaldo")
 print(Player.number)
 print(Player.self)
+
+//DAY 11 Access controls
+
+struct BankAccount{
+    private(set) var funds = 0
+    
+    mutating func deposit(amt:Int){
+        funds += amt
+    }
+    
+    mutating func withdraw(amount:Int)->Bool{
+        if funds>=amount{
+            funds -= amount
+            print("Funds withdrawn successfully")
+            print("Remaining Balance is: \(funds)")
+            return true
+        }else{
+            print("OOPPPSSS!!! not enoungh funds")
+            return false
+        }
+    }
+}
+
+var account = BankAccount()
+account.deposit(amt: 100)
+print(account.funds)
+account.withdraw(amount: 50)
+print(account.funds)
+account.withdraw(amount: 80)
+print(account.funds)
+
