@@ -705,3 +705,31 @@ print(account.funds)
 account.withdraw(amount: 80)
 print(account.funds)
 
+//CHECKPOINT 6
+
+struct Car{
+    let model:String
+    let noSeats:Int
+    var gear:Int
+    
+    mutating func changeGear(shiftTo:Int){
+        if shiftTo >= 10 || shiftTo <= 0{
+            print("Invalid Gear number")
+        }else{
+            gear = shiftTo
+            print("The Gear has been changed to \(shiftTo)")
+        }
+       
+    }
+}
+
+var car = Car(model: "Porche 9/11", noSeats: 2, gear: 3)
+print(car)
+car.changeGear(shiftTo: 6)
+print(car.gear)
+car.changeGear(shiftTo: -1)
+print(car.gear)
+//car.noSeats = 4
+//print(car.noSeats)
+
+
