@@ -807,3 +807,86 @@ class Car59:Vehical{
 let teslax = Car59(isElectric: true, isConvertible: false)
 print(teslax.isConvertible)
 print(teslax.isElectric)
+
+//Deinitializers
+
+class User40{
+    var id40 : Int
+    
+    init(id40: Int) {
+        self.id40 = id40
+        print("I'am user \(id40) and i'm alive")
+    }
+    
+    deinit{
+        print("I'm user \(id40) and i'm dead")
+    }
+}
+
+var user = [User40]()
+for i in 1...3 {
+    var user43 = User40(id40: i)
+    print("i'm user \(user43.id40) and i'm in control")
+    user.append(user43)
+}
+print("Loop is finished")
+user.removeAll()
+print("Array is cleared")
+
+
+//CHECKPOINT 7
+
+class Animals{
+    var legs :Int
+    
+    init(legs: Int) {
+        self.legs = legs
+    }
+}
+class Dogs:Animals{
+    func speak(){
+        print("BARK BARK BARK !!!!")
+    }
+}
+class Corgi : Dogs{
+    override func speak() {
+        print("Corgi barks: BHAU BHAU BHAU")
+    }
+}
+class Poodle : Dogs{
+}
+
+class Cat : Animals{
+    
+    var isTamed : Bool
+    
+    init(legs:Int ,isTamed: Bool) {
+        self.isTamed = isTamed
+        super.init(legs: legs)
+    }
+    func speak(){
+        print("MEOW MEOW MEOW!!!")
+    }
+}
+class Persian : Cat{
+    override func speak() {
+        print("Persian MEOW MEOW MEOW")
+    }
+}
+
+class Lion : Cat{
+    override func speak() {
+        print("ROAR ROAAAAAARRRRR")
+    }
+}
+
+var dog = Corgi(legs: 4)
+dog.speak()
+var dog2 = Poodle(legs: 4)
+dog2.speak()
+var lion = Lion(legs: 4, isTamed: false)
+lion.speak()
+print("\(lion.isTamed)")
+var cat = Persian(legs: 4, isTamed: true)
+cat.speak()
+
