@@ -733,3 +733,77 @@ print(car.gear)
 //print(car.noSeats)
 
 
+//DAY 12  CLASSES
+
+class Team{
+    var players90 = 11{
+        didSet{
+            print("The total numbers of players are \(players90)")
+        }
+    }
+}
+
+var supa = Team()
+supa.players90 += 1
+print(supa.players90)
+
+//Inheritance
+
+class empl{
+    let hours:Int
+    
+    init(hours: Int) {
+        self.hours = hours
+    }
+    
+    func printSummury(){
+        print("i just work ")
+    }
+    
+}
+
+class Developer:empl{
+    func work(){
+        print("i work \(hours) hours a day")
+    }
+    
+    override func printSummury() {
+        print("i work for \(hours) hours but also argue a lot")
+    }
+}
+
+final class Manager:empl{
+    func work(){
+        print("i do meetings for \(hours) hours")
+    }
+}
+
+var suyash50 = Developer(hours: 8)
+suyash50.work()
+var suyash51 = Manager(hours: 10)
+suyash51.work()
+suyash50.printSummury()
+
+//override keyword enables us to make changes in func present in parent class
+//final keyword is used to prohibit other classes from inheriting properties of that class
+
+class Vehical{
+    let isElectric : Bool
+    
+    init(isElectric: Bool) {
+        self.isElectric = isElectric
+    }
+}
+
+class Car59:Vehical{
+    let isConvertible : Bool
+    
+    init(isElectric:Bool ,isConvertible: Bool) {
+        self.isConvertible = isConvertible
+        super.init(isElectric: isElectric)
+    }
+}
+
+let teslax = Car59(isElectric: true, isConvertible: false)
+print(teslax.isConvertible)
+print(teslax.isElectric)
