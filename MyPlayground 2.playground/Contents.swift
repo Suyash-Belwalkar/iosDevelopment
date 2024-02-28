@@ -890,3 +890,58 @@ print("\(lion.isTamed)")
 var cat = Persian(legs: 4, isTamed: true)
 cat.speak()
 
+//Day 13 PROTOCOLS
+
+
+protocol Vehical1{
+    func estimateTime(for distance:Int)->Int
+    func travel(distance:Int)
+}
+
+struct Car90 : Vehical1{
+    func estimateTime(for distance: Int) -> Int {
+        distance / 20
+    }
+    func travel(distance: Int) {
+        print("I will travel \(distance)km today")
+    }
+    func openSunroof(){
+        print("It's a beautiful day")
+    }
+}
+
+struct Bicycle : Vehical1{
+    func estimateTime(for distance: Int) -> Int {
+        distance / 40
+    }
+    func travel(distance: Int) {
+        print("I will travel \(distance) on my bike today")
+    }
+}
+
+let car69 = Car90()
+print(car69.estimateTime(for: 90))
+
+func commute(distance:Int , using vehical:Vehical1){
+    if vehical.estimateTime(for: distance) > 100{
+        print("It's too slowwww!!!")
+    }else{
+        vehical.travel(distance: distance)
+    }
+}
+
+func getEstimatesForAll(using vehicals:[Vehical1] , distance:Int){
+    for vehical in vehicals {
+        let estimate = vehical.estimateTime(for: distance)
+        print("\(vehical) : \(estimate) hours for travelling \(distance)km")
+    }
+}
+
+let car91 = Car90()
+commute(distance: 90, using: car91)
+let bike = Bicycle()
+commute(distance: 70, using: bike)
+getEstimatesForAll(using: [car91 , bike], distance: 180)
+
+
+
