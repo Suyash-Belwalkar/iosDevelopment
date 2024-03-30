@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var resultStatement = ""
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.blue,.black], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.gray,.black], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack{
                 Text("GUESS THE FLAG")
@@ -43,7 +43,7 @@ struct ContentView: View {
                     }
                 }
                 .frame(maxWidth:.infinity)
-                .padding(.vertical,50)
+                .padding(.vertical,40)
                 .background(.thinMaterial)
                 .clipShape(.rect(cornerRadius: 20))
                 Text("Your Score is:\(score)")
@@ -57,7 +57,7 @@ struct ContentView: View {
         .alert(scoreTitle, isPresented: $showingScore){
             Button("Continue", action: askQuestion)
         }message: {
-            Text("Question left \(8-count)")
+            Text("Question left \(7-count)")
         }
         .alert(resultStatement, isPresented: $result){
             Button("Restart", action:askQuestion)
