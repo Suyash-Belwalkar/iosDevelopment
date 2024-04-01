@@ -10,11 +10,15 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var options = ["✊","✋","✌️"]
-    @State private var shouldWin = ["Win" , "Lose"]
+    @State private var correctOption = ["✋","✌️","✊"]
+    @State private var shouldWin = ["Win","Lose"]
     @State private var aim = Int.random(in: 0...1)
     @State private var chose = Int.random(in: 0...2)
     @State private var score = 0
     @State private var selected = ""
+    @State private var alertMsg = ""
+    @State private var showingScore = false
+    @State private var count = 0
     
     
     var body: some View {
@@ -43,7 +47,8 @@ struct ContentView: View {
                 HStack{
                     
                     Button{
-                        
+                        rock()
+                        askQuestion()
                     }label: {
                         Text("✊")
                             .padding()
@@ -54,7 +59,8 @@ struct ContentView: View {
                     }
                     
                     Button{
-                        
+                        scissor()
+                        askQuestion()
                     }label: {
                         Text("✌️")
                             .padding()
@@ -65,7 +71,8 @@ struct ContentView: View {
                     }
                     
                     Button{
-                        
+                        paper()
+                        askQuestion()
                     }label: {
                         Text("✋")
                             .padding()
@@ -85,9 +92,92 @@ struct ContentView: View {
             .background(.thinMaterial)
             .clipShape(.rect(cornerRadius: 20))
         }
-      
+        .alert(alertMsg, isPresented: $showingScore){
+            Button("Continue", action: askQuestion)
+        }message: {
+            Text("Question left \(7-count)")
+        }
     }
-    
+    func rock(){
+        if(options[chose] == "✌️"){
+            if(aim == 0){
+                score += 1
+            }else{
+                score -= 1
+            }
+        }else if(options[chose] == "✋"){
+            if(aim == 0){
+                score -= 1
+            }else{
+                score += 1
+            }
+        }else if(options[chose] == "✊"){
+            if(aim == 0){
+                score -= 1
+            }else{
+                score += 1
+            }
+        }
+    }
+//        if(options[chose] == "✋" || options[chose] == "✊" && aim == 1){
+////            alertMsg = "Correct"
+//            score += 1
+//           
+//        }else if(options[chose] == "✌️" && aim == 0){
+////            alertMsg = "Wrong"
+//            score += 1
+//        }else{
+//            score -= 1
+//        }
+
+    func scissor(){
+        if(options[chose] == "✌️"){
+            if(aim == 0){
+                score -= 1
+            }else{
+                score += 1
+            }
+        }else if(options[chose] == "✋"){
+            if(aim == 0){
+                score += 1
+            }else{
+                score -= 1
+            }
+        }else if(options[chose] == "✊"){
+            if(aim == 0){
+                score -= 1
+            }else{
+                score += 1
+            }
+        }
+    }
+    func paper(){
+        if(options[chose] == "✌️"){
+            if(aim == 0){
+                score -= 1
+            }else{
+                score += 1
+            }
+        }else if(options[chose] == "✋"){
+            if(aim == 0){
+                score -= 1
+            }else{
+                score += 1
+            }
+        }else if(options[chose] == "✊"){
+            if(aim == 0){
+                score += 1
+            }else{
+                score -= 1
+            }
+        }
+    }
+    func askQuestion(){
+        aim = Int.random(in: 0...1)
+        chose = Int.random(in: 0...2)
+//        count += 1
+    }
+   
 }
 
 #Preview {
