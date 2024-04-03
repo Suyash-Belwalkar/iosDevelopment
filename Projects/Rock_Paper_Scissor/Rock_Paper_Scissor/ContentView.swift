@@ -19,11 +19,12 @@ struct ContentView: View {
     @State private var alertMsg = ""
     @State private var showingScore = false
     @State private var count = 0
-    
+    @State private var showAlert : Bool = false
+    @State private var resultStatement = ""
     
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.cyan , .black], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.cyan, .black], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
             VStack{
@@ -86,16 +87,20 @@ struct ContentView: View {
                 .background(.clear)
                 .padding(.vertical,40)
                 .clipShape(.rect(cornerRadius: 20))
+                
+                Text("Question remaining : \(10 - count)")
+                    .font(.title)
+                    .bold()
             }
             .frame(maxWidth:370)
             .padding(.vertical,50)
             .background(.thinMaterial)
             .clipShape(.rect(cornerRadius: 20))
         }
-        .alert(alertMsg, isPresented: $showingScore){
-            Button("Continue", action: askQuestion)
+        .alert(resultStatement , isPresented: $showAlert){
+            Button("Restart", action: askQuestion)
         }message: {
-            Text("Question left \(7-count)")
+            Text("Press restart to play again!!!")
         }
     }
     func rock(){
@@ -175,8 +180,18 @@ struct ContentView: View {
     func askQuestion(){
         aim = Int.random(in: 0...1)
         chose = Int.random(in: 0...2)
-//        count += 1
+        if(count == 9){
+            
+            showAlert = true
+            count = 0
+            resultStatement = "Your final score was : \(score)"
+            score = 0
+        }else{
+            count += 1
+        }
+        
     }
+   
    
 }
 
