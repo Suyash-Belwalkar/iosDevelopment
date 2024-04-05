@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var count = 0
     @State private var showAlert : Bool = false
     @State private var resultStatement = ""
-    
+    @State private var question = 10
     var body: some View {
         ZStack{
             LinearGradient(colors: [.cyan, .black], startPoint: .top, endPoint: .bottom)
@@ -85,7 +85,7 @@ struct ContentView: View {
                 .padding(.vertical,40)
                 .clipShape(.rect(cornerRadius: 20))
                 
-                Text("Question remaining : \(10 - count)")
+                Text("Question remaining : \(question)")
                     .font(.title)
                     .bold()
             }
@@ -174,6 +174,7 @@ struct ContentView: View {
             score = 0
         }else{
             count += 1
+            question = 10 - count
         }
     }
 }
