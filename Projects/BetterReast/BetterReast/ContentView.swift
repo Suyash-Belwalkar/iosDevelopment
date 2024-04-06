@@ -31,9 +31,9 @@ struct ContentView: View {
         
             NavigationStack{
                 Form {
-                    Section("Select wakeup time"){
+                    Section("Select wakeup time ☀️"){
                         VStack(alignment: .leading , spacing: 0){
-                            Text("When do you want to wakeup?")
+                            Text("When do you want to wakeup")
                                 .font(.title3)
                                 .padding()
                                 .bold()
@@ -43,7 +43,7 @@ struct ContentView: View {
                         }
                         
                     }
-                    Section("Select hours of sleep"){
+                    Section("Select hours of sleep 💤"){
                         VStack(alignment: .leading , spacing: 0){
                             Text("How many hours of sleep")
                                 .font(.title3)
@@ -54,9 +54,9 @@ struct ContentView: View {
                                 .bold()
                         }
                     }
-                    Section("Select number of coffee cups"){
+                    Section("Select number of coffee cups ☕️"){
                         VStack(alignment: .leading , spacing: 0){
-                            Text("Total coffee intake of the day")
+                            Text("Total coffee intake of today")
                                 .font(.title3)
                                 .bold()
                                 .padding()
@@ -75,7 +75,7 @@ struct ContentView: View {
                             .bold()
                     }
                 }
-                .navigationTitle("BetterRest")
+                .navigationTitle("BetterRest👾")
                 .alert(alertTitle , isPresented: $showAlert){
                     Button("OK!!"){ }
                 }message: {
