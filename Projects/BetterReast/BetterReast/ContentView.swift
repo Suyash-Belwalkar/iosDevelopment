@@ -12,7 +12,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var wakeUp = defaultDate
     @State private var sleepHours = 8.00
-    @State private var coffeCups = 1
+    @State private var coffeCups = 0
     
     @State private var recommendedSleepTime = ""
     
@@ -61,7 +61,7 @@ struct ContentView: View {
                                 .bold()
                                 .padding()
                             Picker("Coffee Cups",selection: $coffeCups){
-                                ForEach(1..<21){
+                                ForEach(0..<21){
                                     Text("^[\($0) cups](inflect:true)")
                                 }
                             }
