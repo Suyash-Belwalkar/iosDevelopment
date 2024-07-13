@@ -57,7 +57,7 @@ struct ContentView: View {
         .alert(scoreTitle, isPresented: $showingScore){
             Button("Continue", action: askQuestion)
         }message: {
-            Text("Question left \(7-count)")
+            Text("Question left \(8-count)")
         }
         .alert(resultStatement, isPresented: $result){
             Button("Restart", action:askQuestion)
@@ -77,7 +77,7 @@ struct ContentView: View {
     func askQuestion(){
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
-        if(count == 7){
+        if(count == 8){
             count=0
             result=true
             resultStatement = "Your final score was:\(score)"

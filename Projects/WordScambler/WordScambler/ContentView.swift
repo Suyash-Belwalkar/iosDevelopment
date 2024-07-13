@@ -33,8 +33,14 @@ struct ContentView: View {
                     }
                 }
                 Section{
-                    Text("Score: \(totalScore)")
-                        .bold()
+                    HStack{
+                        Text("Score: ")
+                            .bold()
+                            .foregroundStyle(.red)
+                        Text("\(totalScore)")
+                            .bold()
+                            .foregroundStyle(.blue)
+                    }
                 }
                 
             }

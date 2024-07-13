@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var score = 0
     @State private var showingScore = false
     @State private var count = 0
-    @State private var showAlert : Bool = false
+    @State private var showAlert = false
     @State private var resultStatement = ""
     @State private var question = 10
     var body: some View {
