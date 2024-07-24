@@ -16,6 +16,11 @@ struct ContentView: View {
     @State private var count = 0
     @State private var result = false
     @State private var resultStatement = ""
+    @State private var animationAmount = 0.0
+    @State private var animation2 = 0.0
+    @State private var tapped123 = 0
+    @State private var rotationAmount = 360.0
+    @State private var rot = 0.0
     var body: some View {
         ZStack{
             LinearGradient(colors: [.gray,.black], startPoint: .top, endPoint: .bottom)
@@ -31,6 +36,7 @@ struct ContentView: View {
                             .font(.title.weight(.semibold))
                         Text(countries[correctAnswer])
                             .font(.largeTitle.weight(.bold))
+                            .animation(.spring(duration: 1.0 , bounce: 0.6))
                     }
                     ForEach(0..<3){number in
                         Button{
@@ -66,6 +72,7 @@ struct ContentView: View {
         }
     }
     func flagTapped(_ number:Int){
+        tapped123 = number
         if(number == correctAnswer){
             scoreTitle="Correct"
             score += 1
@@ -76,6 +83,7 @@ struct ContentView: View {
     }
     func askQuestion(){
         countries.shuffle()
+//        animationAmount += 360
         correctAnswer = Int.random(in: 0...2)
         if(count == 8){
             count=0
