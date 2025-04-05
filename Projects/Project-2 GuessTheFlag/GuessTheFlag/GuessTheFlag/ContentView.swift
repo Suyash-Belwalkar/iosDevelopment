@@ -74,7 +74,7 @@ struct ContentView: View {
     func flagTapped(_ number:Int){
         tapped123 = number
         if(number == correctAnswer){
-            scoreTitle="Correct"
+            scoreTitle="Correct mmm"
             score += 1
         }else{
             scoreTitle="Wrong!!! \nIt's the map of \(countries[number])"

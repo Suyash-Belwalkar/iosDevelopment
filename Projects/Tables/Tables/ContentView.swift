@@ -7,12 +7,22 @@
 
 import SwiftUI
 
+struct NewView: View {
+    var body: some View {
+       Text("Detailed View")
+    }
+}
+
+enum GameState: String, CaseIterable {
+    case Easy, Medium, Hard
+}
+
 struct ContentView: View {
     @State private var isGameActive = false
     @State private var number = 2
     @State private var numOfQuestions = 1
-    @State private var diff = ["Easy","Medium","Hard"]
-    @State private var diffSelected = ""
+    @State private var diff = [GameState.Easy, GameState.Medium, GameState.Hard]
+    @State private var diffSelected = GameState.Easy
     @State private var questionNumber = "7"
     @State private var easyArray = ["2","3","4","5","6"]
     @State private var mediumArray = ["12","15","18","17","19"]
@@ -40,12 +50,14 @@ struct ContentView: View {
                             }
                             
                             Picker("Difficulty",selection: $diffSelected){
-                                ForEach(diff , id: \.self){
-                                    diff in
-                                    Text(diff).tag(diff)
+                                ForEach(Array(diff.enumerated()), id: \.offset) { index, element in
+                                    Text("\(element)")
                                 }
                             }
                             
+                        }
+                        NavigationLink(destination: NewView()) {
+                            Text("Start Game")
                         }
                         Button("Start"){
                             startGame()
@@ -106,46 +118,42 @@ struct ContentView: View {
     }
     
     func startGame(){
-//        count = 0
         score = 0
-        if(diffSelected == "Easy"){
+        count = 0
+        answer = ""
+
+        switch(GameState(rawValue: diffSelected.rawValue)) {
+        case .Easy:
             easyArray.shuffle()
             questionNumber = easyArray.randomElement() ?? "7"
-            count = 0
-            answer = ""
-        }else if(diffSelected == "Medium"){
+        case .Medium:
             mediumArray.shuffle()
             questionNumber = mediumArray.randomElement() ?? "17"
-            count = 0
-            answer = ""
-        }else if(diffSelected == "Hard"){
+        case .Hard:
             hardArray.shuffle()
             questionNumber = hardArray.randomElement() ?? "23"
-            count = 0
-            answer = ""
+        default: break
         }
-      
-        
-        
     }
     
     func askQuestion(){
         if(count < numOfQuestions){
-            if(diffSelected == "Easy"){
+            answer = ""
+            switch GameState(rawValue: diffSelected.rawValue){
+            case .Easy:
                 easyArray.shuffle()
                 questionNumber = easyArray.randomElement() ?? "7"
                 count += 1
-            }else if(diffSelected == "Medium"){
+            case .Medium:
                 mediumArray.shuffle()
                 questionNumber = mediumArray.randomElement() ?? "17"
                 count += 1
-            }else if(diffSelected == "Hard"){
+            case .Hard:
                 hardArray.shuffle()
                 questionNumber = hardArray.randomElement() ?? "23"
                 count += 1
+            default: break
             }
-            
-            answer = ""
         }else{
             answer = ""
             count=0
