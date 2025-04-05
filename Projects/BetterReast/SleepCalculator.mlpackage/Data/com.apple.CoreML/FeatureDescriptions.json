@@ -1,18 +1,18 @@
 {
   "Inputs" : {
     "coffee" : {
-      "MLFeatureShortDescription" : ""
+      "MLFeatureShortDescription" : "--"
     },
     "wake" : {
-      "MLFeatureShortDescription" : ""
+      "MLFeatureShortDescription" : "--"
     },
     "estimatedSleep" : {
-      "MLFeatureShortDescription" : ""
+      "MLFeatureShortDescription" : "--"
     }
   },
   "Outputs" : {
     "actualSleep" : {
-      "MLFeatureShortDescription" : ""
+      "MLFeatureShortDescription" : "--"
     }
   },
   "TrainingInputs" : {

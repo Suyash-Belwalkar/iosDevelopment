@@ -7,34 +7,52 @@
 
 import SwiftUI
 import RealityKit
+import ARKit
 
-struct ContentView : View {
-
+struct ContentView: View {
     var body: some View {
-        RealityView { content in
-
-            // Create a cube model
-            let model = Entity()
-            let mesh = MeshResource.generateBox(size: 0.1, cornerRadius: 0.005)
-            let material = SimpleMaterial(color: .gray, roughness: 0.15, isMetallic: true)
-            model.components.set(ModelComponent(mesh: mesh, materials: [material]))
-            model.position = [0, 0.05, 0]
-
-            // Create horizontal plane anchor for the content
-            let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
-            anchor.addChild(model)
-
-            // Add the horizontal plane anchor to the scene
-            content.add(anchor)
-
-            content.camera = .spatialTracking
-
-        }
-        .edgesIgnoringSafeArea(.all)
+        ARViewContainer()
+            .edgesIgnoringSafeArea(.all)
     }
-
 }
 
-#Preview {
-    ContentView()
+struct ARViewContainer: UIViewRepresentable {
+    func makeUIView(context: Context) -> ARView {
+        let arView = ARView(frame: .zero)
+
+        // Configure AR session for vertical plane detection
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = [.vertical]
+        arView.session.run(configuration)
+
+        // Define the container frame (e.g., for UI alignment)
+        let containerFrame = CGRect(x: 50, y: 100, width: 200, height: 200)
+
+        // Add a vertical anchor
+        let anchor = AnchorEntity(plane: .vertical, minimumBounds: [0.2, 0.2])
+
+        // Add a box entity and map to containerFrame
+        let box = ModelEntity(
+            mesh: .generateBox(size: [0.1, 0.1, 0.1]),
+            materials: [SimpleMaterial(color: .blue, isMetallic: false)]
+        )
+
+        // Map container frame to AR position
+        if let frameSize = arView.window?.frame.size {
+            box.position = [
+                Float(containerFrame.midX / frameSize.width - 0.5) * 2,
+                Float(containerFrame.midY / frameSize.height - 0.5) * -2,
+                0.1
+            ]
+        }
+
+        anchor.addChild(box)
+
+        // Add the anchor to the AR view
+        arView.scene.addAnchor(anchor)
+
+        return arView
+    }
+
+    func updateUIView(_ uiView: ARView, context: Context) {}
 }
