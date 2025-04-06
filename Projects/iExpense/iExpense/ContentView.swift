@@ -36,29 +36,49 @@ class Expenses{
         
         items = []
     }
-    
 }
 
 struct ContentView: View {
     @State private var expenses = Expenses()
     @State private var showingAddExpense = false
+    
+    var localCurrency : FloatingPointFormatStyle<Double>.Currency{
+        .currency(code: Locale.current.currency?.identifier ?? "INR")//Challenge 1
+    }
     var body: some View {
             NavigationStack{
                 List{
-                    ForEach(expenses.items){ item in
-                        HStack{
-                            VStack(alignment: .leading){
-                                Text(item.name)
-                                    .font(.headline)
-                                Text(item.type)
+                        // Personal expenses section
+                        Section("Personal") {
+                            ForEach(expenses.items.filter { $0.type == "Personal" }) { item in
+                                HStack{
+                                    Text(item.name)
+                                    
+                                    Spacer()
+                                    Text(item.amount , format: localCurrency)
+                                        .foregroundStyle(item.amount <= 10 ? .green : item.amount <= 100 ? .blue : .red)//Challenge 2
+                                }
                             }
-                            
-                            Spacer()
-                            
-                            Text(item.amount, format: .currency(code: "INR"))
+                            .onDelete { indexSet in
+                                removeItem(at: indexSet , forType: "Personal")
+                            }
                         }
-                    }
-                    .onDelete(perform: removeItem)
+
+                        // Business expenses section
+                        Section("Business") {
+                            ForEach(expenses.items.filter { $0.type == "Business" }) { item in
+                                HStack{
+                                    Text(item.name)
+                                    
+                                    Spacer()
+                                    Text(item.amount , format: localCurrency)
+                                        .foregroundStyle(item.amount <= 10 ? .green : item.amount <= 100 ? .blue : .red)
+                                }
+                            }
+                            .onDelete { indexSet in
+                                removeItem(at: indexSet , forType: "Business")
+                            }
+                        }
                 }
                 .navigationTitle("iExpenses")
                 .toolbar{
@@ -72,8 +92,12 @@ struct ContentView: View {
             }
         }
     
-    func removeItem(at offset:IndexSet){
-        expenses.items.remove(atOffsets: offset)
+    func removeItem(at offsets: IndexSet, forType type: String) {
+        let filteredItems = expenses.items.enumerated().filter { $0.element.type == type }
+        for index in offsets {
+            let itemIndex = filteredItems[index].offset
+            expenses.items.remove(at: itemIndex)
+        }
     }
 }
 
