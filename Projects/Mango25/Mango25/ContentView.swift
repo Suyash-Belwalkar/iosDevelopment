@@ -28,8 +28,8 @@ class Orders {
 
     let batchKey: String
 
-    init(batchKey: String) {
-        self.batchKey = batchKey
+    init(batchId: UUID, batchName: String) { // Pass both id and name
+        self.batchKey = "\(batchId.uuidString)-\(batchName)" // Unique key per batch
         loadItems()
     }
 
@@ -56,9 +56,9 @@ struct ContentView: View {
     @State private var isAmountBlurred = true
 
     init(batch: Batch) {
-        self.batch = batch
-        _orders = State(initialValue: Orders(batchKey: batch.name)) // Use name as key
-    }
+            self.batch = batch
+            _orders = State(initialValue: Orders(batchId: batch.id, batchName: batch.name)) 
+        }
 
     var localCurrency: FloatingPointFormatStyle<Double>.Currency {
         .currency(code: Locale.current.currency?.identifier ?? "INR")
