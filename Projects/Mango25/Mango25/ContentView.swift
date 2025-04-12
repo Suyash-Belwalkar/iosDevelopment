@@ -74,7 +74,6 @@ struct ContentView: View {
     var totalTwoPointFive: Int { filteredOrders.reduce(0) { $0 + $1.twoPointFive } }
     var totalThree: Int { filteredOrders.reduce(0) { $0 + $1.three } }
 
-
     var filteredOrders: [OrderItems] {
         if searchText.isEmpty {
             return orders.items
@@ -148,6 +147,7 @@ struct ContentView: View {
                         ForEach(filteredOrders) { item in
                             NavigationLink(destination: AddOrder(orders: orders, orderToEdit: item)) {
                                 OrderRowView(item: item, localCurrency: localCurrency)
+                                    
                             }
                             .listRowBackground(Color.clear)
                             .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .opacity))
