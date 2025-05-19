@@ -39,6 +39,7 @@ struct BatchSelectionView: View {
                             BatchCardView(batch: batch)
                         }
                         .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
                     }
                     .onDelete(perform: deleteBatch)
@@ -191,4 +192,8 @@ struct BatchSelectionView: View {
             ])
         }
     }
+}
+
+#Preview {
+    BatchSelectionView()
 }

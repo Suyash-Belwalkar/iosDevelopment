@@ -17,6 +17,16 @@ struct MissionView: View {
     let mission: Mission
     let crew: [CrewMember]
     
+    //Challenge 2
+    struct CustomDivider: View{
+        var body: some View{
+            Rectangle()
+                .frame(height: 2)
+                .foregroundStyle(.lightBackground)
+                .padding(.vertical)
+        }
+    }
+    
     var body: some View {
         ScrollView{
             VStack{
@@ -27,11 +37,21 @@ struct MissionView: View {
                                             width * 0.6
                     }
                     .padding([.top , .bottom] ,10)
+                //Challenge 1
+                if mission.launchDate != nil{
+                    HStack{
+                        Text("Launch Date:")
+                            .bold()
+                            .font(.caption)
+                        Text("\(mission.formattedDate)")
+                            .foregroundStyle(.white)
+                            .font(.caption)
+                    }
+                }
+                
                 
                 VStack(alignment:.leading){
-                    Rectangle()
-                        .frame(height: 2)
-                        .foregroundStyle(.lightBackground)
+                    CustomDivider()
                         .padding(.vertical)
                     Text("Mission Highlight")
                         .font(.largeTitle )
@@ -39,10 +59,7 @@ struct MissionView: View {
                         .padding(.bottom , 5)
                     
                     Text(mission.description)
-                    Rectangle()
-                        .frame(height: 2)
-                        .foregroundStyle(.lightBackground)
-                        .padding(.vertical)
+                    CustomDivider()
                     
                     Text("Crew")
                         .font(.largeTitle)
@@ -109,6 +126,7 @@ struct MissionView: View {
 #Preview {
     let missions:[Mission] = Bundle.main.decode("missions.json")
     let astronauts:[String: Astronaut] = Bundle.main.decode("astronauts.json")
+    
     
     MissionView(mission: missions[0], astronauts: astronauts)
         .preferredColorScheme(.dark)
