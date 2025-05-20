@@ -37,17 +37,19 @@ struct AddBookScreen: View {
                 
                 Section("Write a Review"){
                     TextEditor(text: $review)
-                    
-                    Picker("Rating" , selection: $rating){
-                        ForEach(0..<6){
-                            Text(String($0))
-                        }
-                    }
+                    StarRatingView(rating: $rating)
                 }
                 
                 Section{
                     Button("Save"){
-                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
+                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating, date: Date.now)
+                        
+                        if newBook.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty{
+                            newBook.title = "N/A"
+                        }
+                        if newBook.author.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty{
+                            newBook.author = "N/A"
+                        }
                         modelContext.insert(newBook)
                         dismiss()
                     }
@@ -57,6 +59,7 @@ struct AddBookScreen: View {
         }
     }
 }
+
 
 #Preview {
     AddBookScreen()
