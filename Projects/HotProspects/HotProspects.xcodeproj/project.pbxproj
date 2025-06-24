@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DFE9B6C62E0A86CB0015050A /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = DFE9B6C52E0A86CB0015050A /* CodeScanner */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DFE9B6A92E0482CF0015050A /* HotProspects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotProspects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFE9B6C62E0A86CB0015050A /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = HotProspects;
 			packageProductDependencies = (
+				DFE9B6C52E0A86CB0015050A /* CodeScanner */,
 			);
 			productName = HotProspects;
 			productReference = DFE9B6A92E0482CF0015050A /* HotProspects.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = DFE9B6A02E0482CE0015050A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DFE9B6C42E0A86CB0015050A /* XCRemoteSwiftPackageReference "codescanner" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DFE9B6AA2E0482CF0015050A /* Products */;
 			projectDirPath = "";
@@ -255,6 +264,8 @@
 				DEVELOPMENT_TEAM = MB5DS33BP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QRcode";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We would like to save QR code ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +295,8 @@
 				DEVELOPMENT_TEAM = MB5DS33BP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QRcode";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We would like to save QR code ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -324,6 +337,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DFE9B6C42E0A86CB0015050A /* XCRemoteSwiftPackageReference "codescanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/codescanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DFE9B6C52E0A86CB0015050A /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFE9B6C42E0A86CB0015050A /* XCRemoteSwiftPackageReference "codescanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DFE9B6A12E0482CF0015050A /* Project object */;
 }
