@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeScreenView: View {
+    
+    @EnvironmentObject var authManager: AuthManager
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -43,6 +46,17 @@ struct HomeScreenView: View {
                 }
             }
             .navigationTitle("Notx")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        authManager.logout()
+                    } label: {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .foregroundColor(.black)
+                            .bold()
+                    }
+                }
+            }
         }
     }
 }

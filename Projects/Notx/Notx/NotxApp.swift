@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct NotxApp: App {
+    @StateObject private var authManager = AuthManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authManager.isAuthenticated {
+                HomeScreenView()
+                    .environmentObject(authManager)
+                    .transition(.opacity.combined(with: .scale))
+            }else{
+                SignUpView()
+                    .environmentObject(authManager)
+                    .transition(.opacity)
+            }
         }
     }
 }
