@@ -9,7 +9,41 @@ import SwiftUI
 
 struct HomeScreenView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            VStack{
+                Spacer()
+                Text("Note Taking App!")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+                
+                Text("Create, Update, and Delete notes with all Authentication features")
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+                Spacer()
+                HStack{
+                    NavigationLink(destination: CreateNoteView()){
+                        Text("Create Note")
+                            .padding()
+                            .frame(width: 150)
+                            .background(Color.black)
+                            .clipShape(Capsule())
+                            .foregroundStyle(.white)
+                    }
+                    .padding()
+                    NavigationLink(destination: AllNotesView()){
+                        Text("All Notes")
+                            .padding()
+                            .frame(width: 150)
+                            .background(Color.black)
+                            .clipShape(Capsule())
+                            .foregroundStyle(.white)
+                    }
+                    .padding()
+                }
+            }
+            .navigationTitle("Notx")
+        }
     }
 }
 
